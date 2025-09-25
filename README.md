@@ -1,35 +1,44 @@
-# Mini Project: Understanding Environment Variables & Infrastructure Environments
+# AWS Cloud Manager Script
 
-## Project Overview
-This project explores the difference between **Infrastructure Environments** (e.g., development, testing, production) and **Environment Variables** (key-value pairs that configure applications).  
-The goal is to demonstrate how shell scripting can use environment variables to manage different infrastructure environments effectively.
+## Overview
+This project demonstrates how to use **environment variables** and **shell scripting** to manage different infrastructure environments (dev, test, prod) on AWS.  
+The script provisions EC2 instances with different configurations depending on the environment.
 
-## Key Learning
-- **Environment Variables**: How to set, export, and use them in scripts.  
-- **Infrastructure Environments**: How different environments (dev, test, prod) are structured and why they matter.  
-- **Conditional Logic in Scripts**: Running different commands based on the environment selected.  
-- **Automation Benefits**: Reducing manual setup, improving consistency, and increasing flexibility.  
+## Features
+- Environment-based logic using shell `case` statements  
+- AWS CLI integration to launch EC2 instances  
+- Clear separation of `dev`, `test`, and `prod` settings  
+- Extensible for real-world deployments  
 
-## Script Usage
-1. Clone the repository:
+## Usage
+1. Configure AWS CLI with valid credentials:
    ```bash
-   git clone https://github.com/slarry07/env-variables-project.git
-   cd env-variables-project
-
+   aws configure
 Make the script executable:
 chmod +x aws_cloud_manager.sh
 
-Run for different environments:
+Run for a specific environment:
 ./aws_cloud_manager.sh dev
 ./aws_cloud_manager.sh test
 ./aws_cloud_manager.sh prod
 
+Example Output
+Launching dev environment EC2 instance...
+{
+    "Instances": [
+        {
+            "InstanceId": "i-0abcd1234efgh5678",
+            "State": { "Name": "pending" },
+            "InstanceType": "t2.micro",
+            "Tags": [{ "Key": "Environment", "Value": "dev" }]
+        }
+    ]
+}
+
 Project Structure
+
 .
 ├── aws_cloud_manager.sh   # Main script
-├── .env.dev               # Dev environment variables
-├── .env.test              # Test environment variables
-├── .env.prod              # Prod environment variables
 └── README.md              # Documentation
 
 
